@@ -3,7 +3,7 @@ session_start();
 
 
 
-Voor de Windows gebruikers;
+//Voor de Windows gebruikers;
 
 $dbhost = "localhost";
 $dbuser = "root";
