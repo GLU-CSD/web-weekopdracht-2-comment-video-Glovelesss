@@ -17,6 +17,7 @@ if ($con -> connect_errno) {
     exit();
 }
 
+
 function prettyDump ( $var ) {
     echo "<pre>";
     var_dump($var);
