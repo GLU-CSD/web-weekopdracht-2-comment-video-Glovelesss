@@ -4,7 +4,7 @@ include("reactions.php");
 
 $getReactions = Reactions::getReactions();
 //uncomment de volgende regel om te kijken hoe de array van je reactions eruit ziet
-// echo "<pre>".var_dump($getReactions)."</pre>";
+ echo "<pre>".var_dump($getReactions)."</pre>";
 
 if(!empty($_POST)){
 
@@ -34,11 +34,43 @@ if(!empty($_POST)){
 </head>
 <body>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l5SKYA9qQes?si=yQD4Y41SvWXvHQxB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <h2>Hieronder komen reacties</h2>
+   <form action = "" method = "POST" >  
+<div>
+    <input type = "text" name = "Name" required/>
+</div>
+<div>
+    <input type = "text" name = "Comment" required/> <br />
+</div>
+<div>
+    <input type = "email" name = "Email" required/> 
+</div>
+<div>
+    <input type = "submit" name = "Submit"  value="Submit"/> 
+</div>
+
+    </form>
+
     <p>Maak hier je eigen pagina van aan de hand van de opdracht</p>
 </body>
 </html>
-
 <?php
-$con->close();
+$sql =
+"INSERT INTO `reactions` (name, email,message)
+    VALUES ('".$_POST["Name"]."','".$_POST["Email"]."','".$_POST["Comment"]."')";   
+$con->query($sql);
 ?>
+<?php
+foreach ($getReactions as $reaction){
+
+ echo $reaction["name"]." <br>";
+}
+foreach ($getReactions as $reaction){
+
+    echo $reaction["email"]." <br>";
+   }
+   foreach ($getReactions as $reaction){
+
+    echo $reaction["Comment"]." <br>";
+   }
+$con->close();
+?>  
